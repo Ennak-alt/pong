@@ -6,13 +6,17 @@
 #include <stdlib.h>
 
 // Remember to do this a bit better
-Player p1 = {.x = 2, .y = 65};
-Player p2 = {.x = 153, .y = 65};
+Player p1;
+Player p2; 
 
-void update () {
+void start() {
+    Player p1 = player_create(2, 65);
+    Player p2 = player_create(153, 65);
+}
+
+void update() {
     *DRAW_COLORS = 2;
 
     player_update(&p1, *GAMEPAD1);
     player_update(&p2, *GAMEPAD2);
-
 }
