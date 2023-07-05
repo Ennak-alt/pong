@@ -1,17 +1,21 @@
 #include "wasm4.h"
 #include "player.h"
+#include "ball.h"
 #include "stdio.h"
 #include "string.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include <assert.h>
 
 // Remember to do this a bit better
 Player p1;
 Player p2; 
+Ball b;
 
 void start() {
-    Player p1 = player_create(2, 65);
-    Player p2 = player_create(153, 65);
+    p1 = player_create(5, 65);
+    p2 = player_create(150, 65);
+    ball_create(&p1, Right);
 }
 
 void update() {

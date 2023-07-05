@@ -11,6 +11,7 @@ Player player_create(int x, int y) {
         .box = box_create(x, y, PLAYER_WIDTH, PLAYER_HEIGHT),
         .score = 0,
     };
+    Box b = box_create(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
     return p;
 }
 
@@ -21,13 +22,14 @@ void player_move_up(Player* p) {
 }
 
 void player_move_down(Player* p) {
-    if (p->box.y + p->box.height < 160) {
+    if (p->box.y + (int)p->box.height < 160) {
         p->box.y += PLAYER_SPEED;
     }
 }
 
 void player_update(Player* p, uint8_t gamepad) {
     *DRAW_COLORS = 3;
+
     rect(p->box.x, p->box.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 
     p->pressedThisFrame = gamepad & (gamepad ^ p->previousGamepad);
