@@ -8,5 +8,7 @@ typedef struct Box{
     int height;
 } Box;
 
+enum side {Right, Left};
+
 Box box_create(int x, int y, int width, int height);
 #endif
