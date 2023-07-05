@@ -4,8 +4,8 @@
 #import <stdbool.h>
 #import "wasm4.h"
 
-#define BALL_WIDTH 4
-#define BALL_HEIGHT 4
+#define BALL_WIDTH 5
+#define BALL_HEIGHT 5
 
 void ball_stick_to_player(Ball *b) {
     if (b->side == Right) {
@@ -42,6 +42,7 @@ void ball_update(Ball* b) {
         b->box.x += b->xdir;        
         b->box.y += b->ydir;
     }
+    *DRAW_COLORS = 3;
     oval(b->box.x, b->box.y, b->box.width, b->box.height);
 }
 

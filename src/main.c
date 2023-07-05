@@ -15,7 +15,7 @@ Ball b;
 void start() {
     p1 = player_create(5, 65);
     p2 = player_create(150, 65);
-    ball_create(&p1, Right);
+    b = ball_create(&p1, Right);
 }
 
 void update() {
@@ -23,4 +23,5 @@ void update() {
 
     player_update(&p1, *GAMEPAD1);
     player_update(&p2, *GAMEPAD2);
+    ball_update(&b);
 }
