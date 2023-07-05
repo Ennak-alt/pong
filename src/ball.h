@@ -27,4 +27,6 @@ void ball_x_flip(Ball*);
 
 void ball_y_flip(Ball*);
 
+bool ball_has_hit_side(Ball*, Player*, Player*);
+
 #endif

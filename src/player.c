@@ -5,7 +5,7 @@
 
 #define PLAYER_WIDTH 5
 #define PLAYER_HEIGHT 15
-#define PLAYER_SPEED 3
+#define PLAYER_SPEED 2
 
 Player player_create(int x, int y) {
     Player p = {

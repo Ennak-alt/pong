@@ -28,6 +28,7 @@ Ball ball_create(Player* p, enum side s) {
     Ball ball = {
         .box = box,
         .playerPtr = p,
+        .side = s,
         .xdir = xdir,
         .ydir = 1,
     };
@@ -62,10 +63,10 @@ void ball_y_flip(Ball* b) {
 }
 
 bool ball_has_hit_side(Ball *b, Player* lp, Player* rp) {
-    if (b->box.x == 160) {
+    if (b->box.x >= 160) {
         lp->score++;
         return true;
-    } else if (b->box.x == 0) {
+    } else if (b->box.x <= 0) {
         rp->score++;
         return true;
     } 

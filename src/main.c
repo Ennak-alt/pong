@@ -21,16 +21,30 @@ void start() {
 void update() {
     *DRAW_COLORS = 2;
 
-    player_update(&player1, *GAMEPAD1, &ball);
-    player_update(&player2, *GAMEPAD2, &ball);
+    player_update(&player1, *GAMEPAD2, &ball);
+    player_update(&player2, *GAMEPAD1, &ball);
 
     if (box_are_overlapping(ball.box, player1.box)) {
         ball_x_flip(&ball);
-        trace("player1 flip");
+        if ((ball.box.y > player1.box.y+player1.box.height/2 && ball.ydir == -1) || 
+            (ball.box.y < player1.box.y+player1.box.height/2 && ball.ydir == 1)) {
+            ball_y_flip(&ball);
+        } 
     } else if (box_are_overlapping(ball.box, player2.box)) {
         ball_x_flip(&ball);
-        trace("player2 flip");
+        if ((ball.box.y > player2.box.y+player2.box.height/2 && ball.ydir == -1) || 
+            (ball.box.y < player2.box.y+player2.box.height/2 && ball.ydir == 1)) {
+            ball_y_flip(&ball);
+        } 
     }
 
     ball_update(&ball);
+
+    if (ball_has_hit_side(&ball, &player1, &player2)){
+        if (ball.box.x <= 0) {
+            ball = ball_create(&player1, Right);
+        } else {
+            ball = ball_create(&player2, Left);
+        }
+    }
 }
