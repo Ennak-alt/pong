@@ -1,3 +1,4 @@
+#include "gameutils.h"
 #include "wasm4.h"
 #include "player.h"
 #include "ball.h"
@@ -7,21 +8,29 @@
 #include <stdlib.h>
 #include <assert.h>
 
-// Remember to do this a bit better
-Player p1;
-Player p2; 
-Ball b;
+Player player1;
+Player player2; 
+Ball ball;
 
 void start() {
-    p1 = player_create(5, 65);
-    p2 = player_create(150, 65);
-    b = ball_create(&p1, Right);
+    player1 = player_create(5, 65);
+    player2 = player_create(150, 65);
+    ball = ball_create(&player1, Right);
 }
 
 void update() {
     *DRAW_COLORS = 2;
 
-    player_update(&p1, *GAMEPAD1);
-    player_update(&p2, *GAMEPAD2);
-    ball_update(&b);
+    player_update(&player1, *GAMEPAD1, &ball);
+    player_update(&player2, *GAMEPAD2, &ball);
+
+    if (box_are_overlapping(ball.box, player1.box)) {
+        ball_x_flip(&ball);
+        trace("player1 flip");
+    } else if (box_are_overlapping(ball.box, player2.box)) {
+        ball_x_flip(&ball);
+        trace("player2 flip");
+    }
+
+    ball_update(&ball);
 }

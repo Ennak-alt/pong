@@ -1,31 +1,35 @@
-#import "ball.h"
-#import "gameutils.h"
-#import <stdlib.h>
-#import <stdbool.h>
-#import "wasm4.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include "wasm4.h"
+#include "ball.h"
 
 #define BALL_WIDTH 5
 #define BALL_HEIGHT 5
 
 void ball_stick_to_player(Ball *b) {
     if (b->side == Right) {
-        b->box.x = b->playerPtr->box.x+(int)b->playerPtr->box.width; 
+        b->box.x = b->playerPtr->box.x+(int)b->playerPtr->box.width+1; 
     } else {
-        b->box.x = b->playerPtr->box.x-BALL_WIDTH;
+        b->box.x = b->playerPtr->box.x-BALL_WIDTH-1;
     }
     b->box.y = b->playerPtr->box.y+(int)b->playerPtr->box.height/2-BALL_HEIGHT/2; 
 }
 
 Ball ball_create(Player* p, enum side s) {
     Box box; 
+    int xdir;
     if (s == Right) {
         box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);     
+        xdir = 2;
     } else {
-        box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);     
+        box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);    
+        xdir = -2; 
     }    
     Ball ball = {
         .box = box,
-        .playerPtr = p
+        .playerPtr = p,
+        .xdir = xdir,
+        .ydir = 1,
     };
     ball_stick_to_player(&ball);
     return ball;
@@ -41,9 +45,12 @@ void ball_update(Ball* b) {
     } else {
         b->box.x += b->xdir;        
         b->box.y += b->ydir;
+        if (b->box.y == 0 || b->box.y == 160) {
+            ball_y_flip(b);
+        } 
     }
     *DRAW_COLORS = 3;
-    oval(b->box.x, b->box.y, b->box.width, b->box.height);
+    oval(b->box.x, b->box.y, BALL_WIDTH, BALL_HEIGHT);
 }
 
 void ball_x_flip(Ball* b) {

@@ -1,8 +1,12 @@
 #ifndef BALL
 #define BALL
 
+#include <stdint.h>
 #include "gameutils.h"
-#include "player.h"
+
+#pragma once
+typedef struct Player Player;
+
 typedef struct Ball {
     Box box;
     Player* playerPtr;
@@ -11,9 +15,13 @@ typedef struct Ball {
     int ydir;
 } Ball;
 
+#include "player.h"
+
 Ball ball_create(Player*, enum side);
 
 void ball_update(Ball*);
+
+void ball_launch(Ball*);
 
 void ball_x_flip(Ball*);
 
