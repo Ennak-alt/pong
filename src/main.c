@@ -21,7 +21,7 @@ void start() {
 void player_ball_collision(Ball* ball, Player* player) {
     if (box_are_overlapping(ball->box, player->box)) {
         ball_x_flip(ball);
-        int midPlayer = player1.box.y+player1.box.height/2;
+        int midPlayer = player->box.y + player->box.height/2;
         int midBall = ball->box.y + ball->box.height/2;
         if ((midBall > midPlayer && ball->ydir == -1) || 
             (midBall < midPlayer && ball->ydir == 1)) {
