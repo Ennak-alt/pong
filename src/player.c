@@ -3,7 +3,7 @@
 #include "wasm4.h"
 #include <stdint.h>
 
-#define PLAYER_WIDTH 5
+#define PLAYER_WIDTH 2
 #define PLAYER_HEIGHT 15
 #define PLAYER_SPEED 2
 

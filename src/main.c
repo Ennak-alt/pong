@@ -18,27 +18,27 @@ void start() {
     ball = ball_create(&player1, Right);
 }
 
+void player_ball_collision(Ball* ball, Player* player) {
+    if (box_are_overlapping(ball->box, player->box)) {
+        ball_x_flip(ball);
+        int midPlayer = player1.box.y+player1.box.height/2;
+        int midBall = ball->box.y + ball->box.height/2;
+        if ((midBall > midPlayer && ball->ydir == -1) || 
+            (midBall < midPlayer && ball->ydir == 1)) {
+            ball_y_flip(ball);
+        } 
+    }
+}
+
 void update() {
     *DRAW_COLORS = 2;
 
     player_update(&player1, *GAMEPAD2, &ball);
     player_update(&player2, *GAMEPAD1, &ball);
 
-    if (box_are_overlapping(ball.box, player1.box)) {
-        ball_x_flip(&ball);
-        if ((ball.box.y > player1.box.y+player1.box.height/2 && ball.ydir == -1) || 
-            (ball.box.y < player1.box.y+player1.box.height/2 && ball.ydir == 1)) {
-            ball_y_flip(&ball);
-        } 
-    } else if (box_are_overlapping(ball.box, player2.box)) {
-        ball_x_flip(&ball);
-        if ((ball.box.y > player2.box.y+player2.box.height/2 && ball.ydir == -1) || 
-            (ball.box.y < player2.box.y+player2.box.height/2 && ball.ydir == 1)) {
-            ball_y_flip(&ball);
-        } 
-    }
-
     ball_update(&ball);
+    player_ball_collision(&ball, &player1);
+    player_ball_collision(&ball, &player2);
 
     if (ball_has_hit_side(&ball, &player1, &player2)){
         if (ball.box.x <= 0) {

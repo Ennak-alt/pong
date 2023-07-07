@@ -3,8 +3,8 @@
 #include "wasm4.h"
 #include "ball.h"
 
-#define BALL_WIDTH 5
-#define BALL_HEIGHT 5
+#define BALL_WIDTH 2
+#define BALL_HEIGHT 2
 
 void ball_stick_to_player(Ball *b) {
     if (b->side == Right) {
@@ -20,10 +20,10 @@ Ball ball_create(Player* p, enum side s) {
     int xdir;
     if (s == Right) {
         box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);     
-        xdir = 2;
+        xdir = 1;
     } else {
         box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);    
-        xdir = -2; 
+        xdir = -1; 
     }    
     Ball ball = {
         .box = box,
