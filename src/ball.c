@@ -20,10 +20,10 @@ Ball ball_create(Player* p, enum side s) {
     int xdir;
     if (s == Right) {
         box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);     
-        xdir = 1;
+        xdir = 5;
     } else {
         box = box_create(0, 0, BALL_WIDTH, BALL_HEIGHT);    
-        xdir = -1; 
+        xdir = -5; 
     }    
     Ball ball = {
         .box = box,

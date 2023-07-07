@@ -4,8 +4,8 @@
 #include <stdint.h>
 
 #define PLAYER_WIDTH 2
-#define PLAYER_HEIGHT 15
-#define PLAYER_SPEED 2
+#define PLAYER_HEIGHT 12
+#define PLAYER_SPEED 1
 
 Player player_create(int x, int y) {
     Player p = {
