@@ -6,8 +6,6 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <stdlib.h>
 
 Player player1;
 Player player2; 
@@ -22,18 +20,6 @@ void start() {
     ball = ball_create(&player1, Right);
 }
 
-void player_ball_collision(Ball* ball, Player* player) {
-    if (box_are_overlapping(ball->box, player->box)) {
-        ball_x_flip(ball);
-        int midPlayer = player->box.y + player->box.height/2;
-        int midBall = ball->box.y + ball->box.height/2;
-        if ((midBall > midPlayer && ball->ydir == -1) || 
-            (midBall < midPlayer && ball->ydir == 1)) {
-            ball_y_flip(ball);
-        } 
-    }
-}
-
 void convert2DigNumToStr(int num, char* buffer) {
     if (num >= 10) {
         *buffer++ = '1';
@@ -44,13 +30,13 @@ void convert2DigNumToStr(int num, char* buffer) {
 }
 
 void update() {
-
     ball_update(&ball);
+    
     player_update(&player1, *GAMEPAD2, &ball);
     player_update(&player2, *GAMEPAD1, &ball);
 
-    player_ball_collision(&ball, &player1);
-    player_ball_collision(&ball, &player2);
+    ball_player_collision(&ball, &player1);
+    ball_player_collision(&ball, &player2);
 
     if (ball_has_hit_side(&ball, &player1, &player2)){
         if (ball.box.x <= 0) {
