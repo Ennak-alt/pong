@@ -15,8 +15,10 @@ char score1[3];
 char score2[3];
 
 void start() {
-    player1 = player_create(3, 65);
-    player2 = player_create(155, 65);
+    player1 = player_create(3, 80);
+    player1.box.y -= player1.box.height/2;
+    player2 = player_create(155, 80);
+    player2.box.y -= player2.box.height/2;
     ball = ball_create(&player1, Right);
 }
 
@@ -50,8 +52,19 @@ void update() {
     convert2DigNumToStr(player1.score, score1);
     convert2DigNumToStr(player2.score, score2);
 
-    text(score1, 65 - (player1.score >= 10 ? 10 : 0), 20);
-    text("10", 89, 20);
+    text(score1, 64 - (player1.score >= 10 ? 10 : 0), 10);
+    text(score2, 90, 10);
 
-    vline(80, 17, 13);
+    for (int i = 2; i < 160; i += 4) {
+        vline(80, i, 4);
+        i += 4;
+    }
+
+    hline(0, 0, 160);
+    hline(0, 1, 160);
+    hline(0, 2, 160);
+
+    hline(0, 157, 160);
+    hline(0, 158, 160);
+    hline(0, 159, 160);
 }
