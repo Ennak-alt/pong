@@ -37,6 +37,7 @@ Ball ball_create(Player* p, enum side s) {
 }
 
 void ball_launch(Ball *b) {
+    tone(300, 10, 50, TONE_PULSE1);
     b->playerPtr = NULL;
 }
 
@@ -50,6 +51,7 @@ void ball_update(Ball* b) {
             b->box.x += b->xdir;        
             b->box.y += b->ydir;
             if (b->box.y <= 3 || b->box.y >= 156) {
+                tone(262, 5, 50, TONE_PULSE1);
                 ball_y_flip(b);
             } 
         }
@@ -71,6 +73,7 @@ void ball_y_flip(Ball* b) {
 
 void ball_player_collision(Ball* ball, Player* player) {
     if (box_are_overlapping(ball->box, player->box)) {
+        tone(262, 5, 50, TONE_PULSE1);
         ball_x_flip(ball);
         int midPlayer = player->box.y + player->box.height/2;
         int midBall = ball->box.y + ball->box.height/2;

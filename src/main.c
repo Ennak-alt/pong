@@ -41,6 +41,7 @@ void update() {
     ball_player_collision(&ball, &player2);
 
     if (ball_has_hit_side(&ball, &player1, &player2)){
+        tone(150, 10, 50, TONE_PULSE1);
         if (ball.box.x <= 0) {
             ball = ball_create(&player1, Right);
         } else {
