@@ -4,8 +4,8 @@
 #include <stdint.h>
 
 #define PLAYER_WIDTH 2
-#define PLAYER_HEIGHT 12
-#define PLAYER_SPEED 1
+#define PLAYER_HEIGHT 15
+#define PLAYER_SPEED 2
 
 Player player_create(int x, int y) {
     Player p = {
@@ -17,13 +17,13 @@ Player player_create(int x, int y) {
 }
 
 void player_move_up(Player* p) {
-    if (p->box.y >= 0) {
+    if (p->box.y >= 3) {
         p->box.y -= PLAYER_SPEED;
     }
 }
 
 void player_move_down(Player* p) {
-    if (p->box.y + (int)p->box.height < 160) {
+    if (p->box.y + (int)p->box.height <= 156) {
         p->box.y += PLAYER_SPEED;
     }
 }
