@@ -87,13 +87,16 @@ void ball_player_collision(Ball* ball, Player* player) {
         int ballOffset = abs(midPlayer - midBall);
         int xsign = ball->xdir < 0 ? -1 : 1;
         int ysign = ball->ydir < 0 ? -1 : 1;
-        if (ballOffset < 3) {
+        if (ballOffset < 3) {        // Hit in the midde
             ball->xdir = 2;
             ball->ydir = 0;
-        } else if (ballOffset > 5) {
+        } else if (ballOffset > 5) { // Hit on an edge
             ball->xdir = 1;
-            ball->ydir = 2;
-        } else {
+            ball->ydir = 2; 
+        } else if (ballOffset == 3){ // Hit right beside the middel
+            ball->xdir = 2;
+            ball->ydir = 1;
+        } else {                     // Hit between the middle and an edge
             ball->xdir = 1;
             ball->ydir = 1;
         }
