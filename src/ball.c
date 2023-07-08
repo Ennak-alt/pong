@@ -49,7 +49,7 @@ void ball_update(Ball* b) {
         } else {
             b->box.x += b->xdir;        
             b->box.y += b->ydir;
-            if (b->box.y <= 0 || b->box.y >= 160) {
+            if (b->box.y <= 3 || b->box.y >= 156) {
                 ball_y_flip(b);
             } 
         }
