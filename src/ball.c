@@ -38,6 +38,14 @@ Ball ball_create(Player* p, enum side s) {
 
 void ball_launch(Ball *b) {
     tone(300, 10, 50, TONE_PULSE1);
+    if (b->playerPtr->direction == UP) {
+        b->ydir = -1;
+    } else if (b->playerPtr->direction == DOWN) {
+        b->ydir = 1;
+    } else {
+        b->ydir = 0;
+        b->xdir *= 3;
+    }
     b->playerPtr = NULL;
 }
 
@@ -104,7 +112,7 @@ void ball_player_collision(Ball* ball, Player* player) {
         } else if (ballOffset >= 2 && ballOffset <= 5){
             ball->xdir = 2;
             ball->ydir = 1;
-        } else {
+        } else {                                        
             ball->xdir = 1;
             ball->ydir = 1;
         }
