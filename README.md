@@ -1,6 +1,8 @@
-# pong
+# PONG!
 
-A game written in C for the [WASM-4](https://wasm4.org) fantasy console.
+Pong written in C for the [WASM-4](https://wasm4.org) fantasy console.
+
+![](pong.mov)
 
 ## Building
 
