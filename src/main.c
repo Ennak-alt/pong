@@ -99,7 +99,7 @@ void singleplayer() {
         text("You won!", 50, 65);
         gameIsDone = true;
         return;
-    } else if (player2.score == 1) {
+    } else if (player2.score == 11) {
         *DRAW_COLORS = 2;
         text("You lost!", 50, 65);
         gameIsDone = true;
