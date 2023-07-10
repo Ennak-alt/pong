@@ -18,5 +18,6 @@ typedef struct Player {
 
 Player player_create(int x, int y);
 void player_update(Player*, uint8_t, Ball*);
+void player_render(Player*);
 
 #endif

@@ -21,6 +21,8 @@ Ball ball_create(Player*, enum side);
 
 void ball_update(Ball*);
 
+void ball_render(Ball*);
+
 void ball_launch(Ball*);
 
 void ball_x_flip(Ball*);

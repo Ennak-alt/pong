@@ -29,9 +29,6 @@ void player_move_down(Player* p) {
 }
 
 void player_update(Player* p, uint8_t gamepad, Ball* ball) {
-    *DRAW_COLORS = 3;
-
-    rect(p->box.x, p->box.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 
     p->pressedThisFrame = gamepad & (gamepad ^ p->previousGamepad);
     p->previousGamepad = gamepad;
@@ -45,4 +42,9 @@ void player_update(Player* p, uint8_t gamepad, Ball* ball) {
     if (p->pressedThisFrame & BUTTON_1 && ball->playerPtr == p) {
         ball_launch(ball);
     }
+}
+
+void player_render(Player* p) {
+    *DRAW_COLORS = 3;
+    rect(p->box.x, p->box.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 }

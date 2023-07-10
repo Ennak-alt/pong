@@ -58,7 +58,9 @@ void ball_update(Ball* b) {
     } else {
         frameCount++;
     }
-    
+}
+
+void ball_render(Ball* b) {
     *DRAW_COLORS = 3;
     oval(b->box.x, b->box.y, BALL_WIDTH, BALL_HEIGHT);
 }
