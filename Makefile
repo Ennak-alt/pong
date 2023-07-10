@@ -1,4 +1,4 @@
-WASI_SDK_PATH = /Users/axelkanne/Downloads/wasi-sdk-20.0
+WASI_SDK_PATH = ${W4_PATH}
 
 ifndef WASI_SDK_PATH
 $(error Download the WASI SDK (https://github.com/WebAssembly/wasi-sdk) and set $$WASI_SDK_PATH)

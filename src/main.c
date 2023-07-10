@@ -69,6 +69,7 @@ void startMenu() {
             smenu = MULT;
         } else if (pressed & BUTTON_1) {
             start();
+            player1.previousGamepad = BUTTON_1;
             gameState = SINGLEPLAYER;
         } 
     } else {
@@ -77,6 +78,7 @@ void startMenu() {
             smenu = SING;
         } else if (pressed & BUTTON_1) {
             start();
+            player1.previousGamepad = BUTTON_1;
             gameState = MULTIPLAYER;
         } 
     }
